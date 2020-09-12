@@ -33,7 +33,8 @@ IDEA mysql&oracle mybatis-generator plugin插件 自动生成实体类和mapper.
 3.  提交代码
 4.  新建 Pull Request
 
-
 #### Log
+
+- 2020-09-12 mybatis-mysql集成SqlInterceptor打印完整sql
 
 - 2020-08-23 初版，并在mybatis-oracle模块中配置了单数据源的全局变量，使用场景：在一个数据源中使用另外一个数据源的数据
