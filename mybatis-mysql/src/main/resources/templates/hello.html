@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="js/jquery-3.2.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot</title>
+</head>
+<body>
+<label for="sessionCount">sessionCount5：</label><input type="text" id="sessionCount"/>
+<p>hello!</p>
+</body>
+<script>
+    $.ajax({
+        url: 'getSession',
+        type: 'get',
+        async: false,
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (data) {
+            $("#sessionCount").val(data);
+            console.log(data)
+        }
+    })
+</script>
+</html>

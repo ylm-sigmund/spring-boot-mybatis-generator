@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>springboot</title>
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+<div id="test">
+    <input type="text" name="a"/>
+
+    <input name="b" value="1" type="radio"/>
+    <input name="b" value="2" type="radio"/>
+    <input name="b" value="3" type="radio"/>
+
+    <input name="c"  type="checkbox" value="1"/>
+    <input name="c" type="checkbox" value="2"/>
+    <input name="c" type="checkbox" value="3"/>
+
+    <textarea name="d"></textarea>
+
+    <select name="e">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+</div>
+
+<script>
+
+    let data={
+        a:"123",
+        b:"2",
+        c:['1','2'],
+        d:"1236",
+        e:"2"
+    };
+
+    test2("#test",data);
+    function test2(args,data){
+        $(args+" input[type='text']").each(function () {
+            let tags= $(this).attr("name");
+            let val=data[tags];
+            $("input[name="+tags+"]").val(val);
+        });
+
+        $(args+" input[type='radio']").each(function () {
+            let tags= $(this).attr("name");
+            let val=data[tags];
+            $("input[name="+tags+"]").each(function () {
+                let val2=$(this).val();
+                if(val===val2){
+                    $(this).prop( "checked",true);
+                }
+            })
+        });
+
+        $(args+" input[type='checkbox']").each(function () {
+            let tags= $(this).attr("name");
+            let val=data[tags];
+            console.log(val);
+            $("input[name="+tags+"]").each(function () {
+                let val2=$(this).val();
+                if(val.indexOf(val2)>=0){
+                    $(this).attr("checked",true);
+                }
+            })
+        });
+
+        $(args+" textarea").each(function () {
+            let tags= $(this).attr("name");
+            let val=data[tags];
+            $("textarea[name="+tags+"]").val(val);
+        });
+        $(args+" select").each(function () {
+            let tags= $(this).attr("name");
+            let val=data[tags];
+            $("select[name="+tags+"]").val(val);
+        })
+
+    }
+
+</script>
+</body>
+</html>
