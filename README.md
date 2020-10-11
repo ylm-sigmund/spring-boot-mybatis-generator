@@ -16,25 +16,8 @@ IDEA mysql&oracle mybatis-generator plugin插件 自动生成实体类和mapper.
 </dependency>
 ```
 
-#### 安装教程
-
-1.  xxxx
-
-
-#### 使用说明
-
-1.  xxxx
-
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
 #### Log
+- 2020-10-11 mybatis-oracle集成数据库批处理更新代码(使用lambda表达式，可复用)，com.diy.sigmund.mybatisoracle.util.BatchProgram
 - 2020-09-14 mybatis-mysql集成
 1. Spring Boot SessionListener 用监听器统计网站在线人数
 2. Spring Boot thymeleaf模板静态文件不更新的解决方案

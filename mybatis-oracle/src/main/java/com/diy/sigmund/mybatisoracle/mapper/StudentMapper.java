@@ -1,7 +1,11 @@
 package com.diy.sigmund.mybatisoracle.mapper;
 
-import com.diy.sigmund.mybatisoracle.entity.Student;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import com.diy.sigmund.mybatisoracle.entity.Student;
 
 @Component
 public interface StudentMapper {
@@ -16,4 +20,8 @@ public interface StudentMapper {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    List<Student> getStudents(@Param("startUserId") int startUserId, @Param("endUserId") int endUserId);
+
+    int updateStudents(@Param("list") List<Student> list);
 }

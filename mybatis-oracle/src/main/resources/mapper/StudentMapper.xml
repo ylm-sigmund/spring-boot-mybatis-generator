@@ -79,4 +79,22 @@
       PHONE = #{phone,jdbcType=DECIMAL}
     where USERID = #{userid,jdbcType=DECIMAL}
   </update>
+  <select id="getStudents" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from STUDENT
+    where USERID <![CDATA[ >= ]]> #{startUserId,jdbcType=DECIMAL}
+    and USERID <![CDATA[ <= ]]> #{endUserId,jdbcType=DECIMAL}
+  </select>
+  <update id="updateStudents" parameterType="com.diy.sigmund.mybatisoracle.entity.Student">
+    begin
+    <foreach collection="list" item="item">
+      update STUDENT
+      set USERNAME = #{item.username,jdbcType=VARCHAR},
+      AGE = #{item.age,jdbcType=DECIMAL},
+      PHONE = #{item.phone,jdbcType=DECIMAL}
+      where USERID = #{item.userid,jdbcType=DECIMAL};
+    </foreach>
+    end;
+  </update>
 </mapper>
