@@ -1,5 +1,7 @@
 package com.diy.sigmund.mybatisoracle.entity;
 
+import java.util.StringJoiner;
+
 public class Student {
     private Integer userid;
 
@@ -39,5 +41,15 @@ public class Student {
 
     public void setPhone(Long phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Student.class.getSimpleName() + "[", "]")
+            .add("userid=" + userid)
+            .add("username='" + username + "'")
+            .add("age=" + age)
+            .add("phone=" + phone)
+            .toString();
     }
 }

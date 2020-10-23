@@ -24,4 +24,6 @@ public interface StudentMapper {
     List<Student> getStudents(@Param("startUserId") int startUserId, @Param("endUserId") int endUserId);
 
     int updateStudents(@Param("list") List<Student> list);
+
+    int insertBySelectKey(Student record);
 }

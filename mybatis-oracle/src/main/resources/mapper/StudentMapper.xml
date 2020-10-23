@@ -97,4 +97,14 @@
     </foreach>
     end;
   </update>
+
+  <insert id="insertBySelectKey" parameterType="com.diy.sigmund.mybatisoracle.entity.Student">
+    <selectKey keyProperty="userid" order="BEFORE" resultType="integer">
+      SELECT seq_userId.nextval as userid FROM dual
+    </selectKey>
+    insert into STUDENT (USERID, USERNAME, AGE,
+                         PHONE)
+    values (#{userid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{age,jdbcType=NUMERIC},
+            #{phone,jdbcType=NUMERIC})
+  </insert>
 </mapper>
