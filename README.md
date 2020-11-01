@@ -17,6 +17,7 @@ IDEA mysql&oracle mybatis-generator plugin插件 自动生成实体类和mapper.
 ```
 
 #### Log
+- 2020-11-1 [mybatis-oracle]beans profile [Spring Boot]
 - 2020-10-31 [mybatis-oracle]Maven profile 粗谈
 - 2020-10-23 [mybatis-oracle]selectKey 标签应用
 - 2020-10-11 [mybatis-oracle]集成数据库批处理更新代码(使用lambda表达式，可复用)，com.diy.sigmund.mybatisoracle.util.BatchProgram
