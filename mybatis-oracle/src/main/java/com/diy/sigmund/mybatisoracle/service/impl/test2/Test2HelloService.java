@@ -16,7 +16,7 @@ public class Test2HelloService implements HelloService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Test2HelloService.class);
 
-    @Value("#{config.name}")
+    @Value("${name}")
     private String name;
 
     @Override

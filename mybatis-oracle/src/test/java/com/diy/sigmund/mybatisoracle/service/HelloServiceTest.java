@@ -11,9 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
  * @since 2020/11/1 21:27
  */
 @SpringBootTest
-@ContextConfiguration(locations = {"classpath:config/xmlConfig/application-bean.xml",
-    "classpath:config/xmlConfig/applicationContext.xml"})
-@ActiveProfiles("test2")
+@ContextConfiguration(locations = {"classpath:config/xmlConfig/applicationContext.xml"})
+@ActiveProfiles("test1")
 class HelloServiceTest {
 
     @Autowired

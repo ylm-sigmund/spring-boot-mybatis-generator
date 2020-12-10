@@ -5,8 +5,9 @@ import com.diy.sigmund.mybatisoracle.entity.Teacher;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public interface TeacherMapper {
     int deleteByPrimaryKey(Integer userid);
 

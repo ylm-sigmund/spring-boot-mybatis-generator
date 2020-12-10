@@ -17,7 +17,7 @@ public class BatchProgram {
     /**
      * 自定义函数式接口IBatchProgram
      */
-    public static <E> int process(List<E> list, IBatchProgram<E> batchProgram, int batchSize) {
+    public static <E> int process(List<E> list, int batchSize, IBatchProgram<E> batchProgram) {
         if (CollectionUtils.isEmpty(list)) {
             return 0;
         }
@@ -40,7 +40,7 @@ public class BatchProgram {
      * 不需要声明接口，直接使用Consumer
      * 
      */
-    public static <T> void accept(List<T> list, Consumer<List<T>> function, int batchSize) {
+    public static <T> void accept(List<T> list, int batchSize, Consumer<List<T>> function) {
         if (CollectionUtils.isEmpty(list)) {
             return;
         }
@@ -61,7 +61,7 @@ public class BatchProgram {
      * 不需要声明接口，直接使用Function
      *
      */
-    public static <T> int apply(List<T> list, Function<List<T>, Integer> function, int batchSize) {
+    public static <T> int apply(List<T> list, int batchSize, Function<List<T>, Integer> function) {
         if (CollectionUtils.isEmpty(list)) {
             return 0;
         }

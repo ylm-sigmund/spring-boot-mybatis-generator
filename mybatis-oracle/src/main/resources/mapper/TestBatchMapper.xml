@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diy.sigmund.mybatisoracle.mapper.TestBatchMapper">
+  <resultMap id="BaseResultMap" type="com.diy.sigmund.mybatisoracle.entity.TestBatch">
+    <id column="userid" jdbcType="DECIMAL" property="userId"/>
+    <result column="username" jdbcType="VARCHAR" property="userName"/>
+    <result column="age" jdbcType="DECIMAL" property="age"/>
+    <result column="phone" jdbcType="DECIMAL" property="phone"/>
+    <result column="currencyone" jdbcType="VARCHAR" property="currencyOne"/>
+    <result column="countone" jdbcType="NUMERIC" property="countOne"/>
+    <result column="currencytwo" jdbcType="VARCHAR" property="currencyTwo"/>
+    <result column="counttwo" jdbcType="NUMERIC" property="countTwo"/>
+    <result column="createtime" jdbcType="DATE" property="createTime"/>
+    <result column="updatetime" jdbcType="DATE" property="updateTime"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, username, age, phone,currencyone,countone,currencytwo,counttwo,createtime,updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+    resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from testbatch
+    where USERID = #{userid,jdbcType=DECIMAL}
+  </select>
+  <select id="getSome" parameterType="java.lang.Integer"
+    resultMap="BaseResultMap">
+    select USERID,
+           USERNAME,
+           AGE,
+           PHONE,
+           currencyone,
+           countone,
+           currencytwo,
+           counttwo,
+           to_char(createtime, 'YYYY-MM-DD HH24:MI:SS') as createtime,
+           to_char(updatetime, 'YYYY-MM-DD HH24:MI:SS') as updatetime
+    from testbatch
+    where USERID <![CDATA[>=]]> #{beginId,jdbcType=NUMERIC}
+      and USERID <![CDATA[<=]]>
+          #{endId,jdbcType=NUMERIC}
+  </select>
+
+  <delete id="deleteSome" parameterType="java.lang.Integer">
+    delete
+    from testbatch
+    where USERID <![CDATA[>=]]> #{beginId,jdbcType=NUMERIC}
+      and USERID <![CDATA[<=]]>
+          #{endId,jdbcType=NUMERIC}
+  </delete>
+
+  <insert id="batchInsertOne" parameterType="com.diy.sigmund.mybatisoracle.entity.TestBatch">
+    <foreach collection="list" item="item" index="index" open="begin" close="end;">
+      INSERT INTO testbatch
+      (userid, username, age, phone,currencyone,countone,currencytwo,counttwo,createtime,updatetime)
+      VALUES
+      (#{item.userId,jdbcType=NUMERIC}, #{item.userName,jdbcType=VARCHAR},
+      #{item.age,jdbcType=NUMERIC},
+      #{item.phone,jdbcType=NUMERIC},
+      #{item.currencyOne,jdbcType=VARCHAR},
+      #{item.countOne,jdbcType=NUMERIC},
+      #{item.currencyTwo,jdbcType=VARCHAR},
+      #{item.countTwo,jdbcType=NUMERIC},
+      to_date(#{item.createTime,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS'),
+      sysdate);
+    </foreach>
+  </insert>
+
+  <insert id="batchInsertTwo" parameterType="com.diy.sigmund.mybatisoracle.entity.TestBatch">
+    begin
+    INSERT INTO testbatch
+    (userid, username, age, phone,currencyone,countone,currencytwo,counttwo,createtime,updatetime)
+    <foreach collection="list" item="item" separator="union all">
+      SELECT #{item.userId,jdbcType=NUMERIC}, #{item.userName,jdbcType=VARCHAR},
+      #{item.age,jdbcType=NUMERIC},
+      #{item.phone,jdbcType=NUMERIC},
+      #{item.currencyOne,jdbcType=VARCHAR},
+      #{item.countOne,jdbcType=NUMERIC},
+      #{item.currencyTwo,jdbcType=VARCHAR},
+      #{item.countTwo,jdbcType=NUMERIC},
+      to_date(#{item.createTime,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS'),
+      sysdate
+      FROM dual
+    </foreach>
+    ;end;
+  </insert>
+</mapper>

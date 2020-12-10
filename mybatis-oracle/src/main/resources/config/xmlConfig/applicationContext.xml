@@ -2,25 +2,44 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:util="http://www.springframework.org/schema/util"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context-3.0.xsd
-           http://www.springframework.org/schema/util
-           http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  <!-- 将配置文件读取到容器中，交给Spring管理 -->
+  <bean id="propertyConfigurer"
+    class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+    <property name="properties" ref="configProperties"/>
+  </bean>
+
   <!-- 定义profile -->
   <beans profile="test1">
     <!--定义包扫描路径-->
     <context:component-scan base-package="com.diy.sigmund.mybatisoracle.service.impl.test1"/>
-    <!-- 加载配置文件 -->
-    <util:properties id="config"
-      location="classpath:config/properties/test1/test1properties.properties"/>
+
+    <!-- @Value -->
+    <!-- 将多个配置文件位置放到列表中 -->
+    <bean id="configProperties"
+      class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+      <property name="locations">
+        <list>
+          <value>classpath*:config/properties/test1/test1properties.properties</value>
+        </list>
+      </property>
+    </bean>
   </beans>
 
   <beans profile="test2">
     <context:component-scan base-package="com.diy.sigmund.mybatisoracle.service.impl.test2"/>
-    <util:properties id="config"
-      location="classpath:config/properties/test2/test2properties.properties"/>
+    <!-- @Value -->
+    <!-- 将多个配置文件位置放到列表中 -->
+    <bean id="configProperties"
+      class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+      <property name="locations">
+        <list>
+          <value>classpath*:config/properties/test2/test2properties.properties</value>
+        </list>
+      </property>
+    </bean>
   </beans>
 </beans>

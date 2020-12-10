@@ -6,8 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import com.diy.sigmund.mybatisoracle.entity.Student;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public interface StudentMapper {
     int deleteByPrimaryKey(Integer userid);
 

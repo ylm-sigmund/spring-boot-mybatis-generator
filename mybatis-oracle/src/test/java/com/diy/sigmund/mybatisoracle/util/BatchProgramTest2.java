@@ -24,7 +24,7 @@ import com.diy.sigmund.mybatisoracle.service.HelloService;
 // 在启动会根据主启动类上的@SpringBootApplication去扫描当前类及其子包下的类.当出现子包中相同类名时,容器失败.
 @SpringBootTest
 @ActiveProfiles("test1")
-class BatchProgramTest {
+class BatchProgramTest2 {
 
     // @Autowired
     // @Qualifier("test1HelloService")
@@ -40,7 +40,7 @@ class BatchProgramTest {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
 
     // @Test
-    // void batchExec() {
+    // void batchExec(StringBuffer stringBuffer) {
     // final List<Student> students = studentMapper.getStudents(1, 11);
     // students.forEach(student -> student.setPhone(122L));
     // // 批处理更新return的是一个负数，这个数值等于batchNum
@@ -55,16 +55,15 @@ class BatchProgramTest {
      * 测试批量插入性能，不使用批处理，预编译时间太长，都连接超时了
      */
     // @Test
-    // void testBatchInsertInto() {
+    // void testBatchInsertInto(StringBuffer stringBuffer) {
     // final List<TestBatch> one = testBatchMapper.getSome(110001, 120000);
     // final int delete = testBatchMapper.deleteSome(110001, 120000);
     //
     // final LocalDateTime start = LocalDateTime.now();
-    // testBatchMapper.batchInsertOne(one);
+    // testBatchMapper.batchInsertTwo(one);
     // final LocalDateTime end = LocalDateTime.now();
     // System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
     // }
-
     /**
      * 测试各单元测试每一次执行分别打印的时间，逗号分隔，不用入库
      */
@@ -125,7 +124,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 100, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 100, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -137,7 +136,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 200, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 200, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -149,7 +148,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 300, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 300, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -161,7 +160,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 400, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 400, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -173,7 +172,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 500, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 500, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -185,7 +184,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 600, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 600, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -197,7 +196,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 700, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 700, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -209,7 +208,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 800, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 800, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -221,7 +220,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 900, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 900, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -233,7 +232,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 5, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 5, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -245,7 +244,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 10, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 10, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -257,7 +256,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 30, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 30, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -269,7 +268,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 50, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 50, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -281,7 +280,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 70, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 70, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
@@ -293,7 +292,7 @@ class BatchProgramTest {
         final int delete = testBatchMapper.deleteSome(140001, 150000);
 
         final LocalDateTime start = LocalDateTime.now();
-        BatchProgram.apply(one, 85, list -> testBatchMapper.batchInsertOne(list));
+        BatchProgram.apply(one, 85, list -> testBatchMapper.batchInsertTwo(list));
         final LocalDateTime end = LocalDateTime.now();
         System.out.println("批量insert10000条数据，使用的时间 ms : " + Duration.between(start, end).toMillis());
         final long millis = Duration.between(start, end).toMillis();
