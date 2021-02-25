@@ -2,6 +2,7 @@ package com.diy.sigmund.mybatisoracle.mapper;
 
 import java.util.List;
 
+import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -23,4 +24,6 @@ public interface TestBatchMapper {
     int batchInsertOne(@Param("list") List<TestBatch> list);
 
     int batchInsertTwo(@Param("list") List<TestBatch> list);
+
+    List<Map<String,Object>> getResult(@Param("sql")String sql);
 }

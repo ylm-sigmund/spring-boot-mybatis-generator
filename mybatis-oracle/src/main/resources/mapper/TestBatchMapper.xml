@@ -85,4 +85,8 @@
     </foreach>
     ;end;
   </insert>
+
+  <select id="getResult" resultType="java.util.Map">
+    ${sql}
+  </select>
 </mapper>
