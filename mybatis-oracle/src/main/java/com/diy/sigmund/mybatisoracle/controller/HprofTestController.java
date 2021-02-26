@@ -21,6 +21,11 @@ public class HprofTestController {
   @Resource
   private TestBatchMapper testBatchMapper;
 
+  /**
+   * -Xmx30m -XX:+HeapDumpOnOutOfMemoryError
+   * @param sql
+   * @return
+   */
   @GetMapping("hprofTest")
   public Object getResult(@RequestParam("sql") String sql){
     final List<Map<String,Object>> result = testBatchMapper.getResult(sql);
