@@ -1,15 +1,15 @@
 package com.diy.sigmund.mybatisoracle.controller;
 
-import com.diy.sigmund.mybatisoracle.mapper.TestBatchMapper;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
-import javax.websocket.server.PathParam;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.diy.sigmund.mybatisoracle.mapper.TestBatchMapper;
 
 /**
  * @author ylm-sigmund
@@ -18,18 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HprofTestController {
 
-  @Resource
-  private TestBatchMapper testBatchMapper;
+    @Resource
+    private TestBatchMapper testBatchMapper;
 
-  /**
-   * -Xmx30m -XX:+HeapDumpOnOutOfMemoryError
-   * @param sql
-   * @return
-   */
-  @GetMapping("hprofTest")
-  public Object getResult(@RequestParam("sql") String sql){
-    final List<Map<String,Object>> result = testBatchMapper.getResult(sql);
-    return result;
-  }
+    /**
+     * -Xmx30m -XX:+HeapDumpOnOutOfMemoryError
+     * 
+     * @param sql
+     *            sql
+     * @return Object
+     */
+    @GetMapping("hprofTest")
+    public Object getResult(@RequestParam("sql") String sql) {
+        final List<Map<String, Object>> result = testBatchMapper.getResult(sql);
+        return result;
+    }
 
 }
